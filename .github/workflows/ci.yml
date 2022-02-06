@@ -54,5 +54,5 @@ jobs:
         if: github.ref_name == 'main'
         run: |
           ls -l dist
-          curl -F package=@$(ls dist/django-monthfield-*-py3-none-any.whl) https://${{ secrets.FURY_IO_UPLOAD_TOKEN }}@push.fury.io/spatialquotient/
+          curl -F package=@$(ls dist/django_monthfield-*-py3-none-any.whl) https://${{ secrets.FURY_IO_UPLOAD_TOKEN }}@push.fury.io/spatialquotient/
 
