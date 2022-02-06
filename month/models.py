@@ -5,7 +5,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from month import Month, forms, widgets
-from month.util import string_type
 
 
 class MonthField(models.DateField):
@@ -27,7 +26,7 @@ class MonthField(models.DateField):
                     code="invalid_year",
                     params={"value": value},
                 )
-        elif isinstance(value, string_type):
+        elif isinstance(value, str):
             month = Month.from_string(value)
         else:
             month = None

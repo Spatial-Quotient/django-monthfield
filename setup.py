@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name="django-monthfield",
     version="0.1.3",
-    author=u"Matthys Kroon",
+    author="Matthys Kroon",
     author_email="matthysk@clearspark.co.za",
     packages=["month"],
     include_package_data=True,

@@ -8,8 +8,6 @@ from django.forms import widgets
 from django.templatetags.static import static
 from django.utils.dates import MONTHS
 
-from month.util import string_type
-
 
 class MonthSelectorWidget(widgets.MultiWidget):
     class Media:
@@ -26,7 +24,7 @@ class MonthSelectorWidget(widgets.MultiWidget):
 
     def decompress(self, value):
         if value:
-            if isinstance(value, string_type):
+            if isinstance(value, str):
                 m = int(value[5:7])
                 y = int(value[:4])
                 return [m, y]
