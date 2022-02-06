@@ -12,16 +12,14 @@ from month.util import string_type
 
 class MonthSelectorWidget(widgets.MultiWidget):
     class Media:
-        css = {
-            'screen': ('month/field/widget_month.css', )
-        }
+        css = {"screen": ("month/field/widget_month.css",)}
 
     def __init__(self, attrs=None):
         # create choices for days, months, years
         _attrs = attrs or {}  # default class
-        _attrs['class'] = (_attrs.get('class', '') + ' w-month-year').strip()
+        _attrs["class"] = (_attrs.get("class", "") + " w-month-year").strip()
         _widgets = [widgets.Select(attrs=_attrs, choices=MONTHS.items())]
-        _attrs['class'] += " w-year"
+        _attrs["class"] += " w-year"
         _widgets.append(widgets.NumberInput(attrs=_attrs))
         super(MonthSelectorWidget, self).__init__(_widgets, attrs)
 
@@ -35,16 +33,16 @@ class MonthSelectorWidget(widgets.MultiWidget):
         return [None, None]
 
     def format_output(self, rendered_widgets):
-        return ''.join(rendered_widgets)
+        return "".join(rendered_widgets)
 
     def value_from_datadict(self, data, files, name):
         datelist = [
-            widget.value_from_datadict(data, files, name + '_%s' % i)
-            for i, widget in enumerate(self.widgets)]
+            widget.value_from_datadict(data, files, name + "_%s" % i)
+            for i, widget in enumerate(self.widgets)
+        ]
         try:
-            D = date(day=1, month=int(datelist[0]),
-                     year=int(datelist[1]))
+            D = date(day=1, month=int(datelist[0]), year=int(datelist[1]))
         except ValueError:
-            return ''
+            return ""
         else:
             return str(D)

@@ -6,7 +6,6 @@ from example.models import Example
 
 
 def TestMonthFunctions(TestCase):
-
     def tearDown(self):
         Example.objects.all().delete()
 
@@ -15,14 +14,14 @@ def TestMonthFunctions(TestCase):
         self.assertEqual(m.year, 2010)
         self.assertEqual(m.month, 1)
 
-        m = Month.from_string('2010-01')
+        m = Month.from_string("2010-01")
         self.assertEqual(m.year, 2010)
         self.assertEqual(m.month, 1)
 
         m = Month.from_date(datetime.date(year=2010, month=1, day=20))
         self.assertEqual(m.year, 2010)
         self.assertEqual(m.month, 1)
-    
+
     def test_addition(self):
         m = Month(2010, 1)
         x = m + 5
@@ -83,7 +82,7 @@ def TestMonthFunctions(TestCase):
         assert datetime.date(year=2009, month=12, day=31) not in m
         assert datetime.date(year=2009, month=1, day=31) not in m
         assert datetime.date(year=2010, month=2, day=15) not in m
-    
+
     def test_int_conversion(self):
         m = Month(2010, 1)
         n = Month.from_int(int(m))
@@ -99,7 +98,7 @@ def TestMonthFunctions(TestCase):
         assert m < "2010-02-01"
         assert m > "2009-12"
         assert m > "2009-12-31"
-        
+
         p = m.prev_month()
         n = m.next_month()
 
@@ -124,35 +123,34 @@ def TestMonthFunctions(TestCase):
         assert not m > n
         assert not m >= n
 
+
 class test_model_field(TestCase):
-
     def test_queries(self):
-        e = Example(name='2010-01', month=Month(2010, 1))
+        e = Example(name="2010-01", month=Month(2010, 1))
         e.save()
         assert isinstance(e.month, Month)
         assert e.month.month == 1
         assert e.month.year == 2010
         pk = e.pk
-        
+
         e = Example.objects.get(pk=pk)
         assert isinstance(e.month, Month)
         assert e.month.month == 1
         assert e.month.year == 2010
 
-
-        e = Example(name='2010-01', month='2010-01')
+        e = Example(name="2010-01", month="2010-01")
         e.save()
         pk = e.pk
-        
+
         e = Example.objects.get(pk=pk)
         assert isinstance(e.month, Month)
         assert e.month.month == 1
         assert e.month.year == 2010
 
-        e = Example(name='2010-01', month=datetime.date(year=2010, month=1, day=20))
+        e = Example(name="2010-01", month=datetime.date(year=2010, month=1, day=20))
         e.save()
         pk = e.pk
-        
+
         e = Example.objects.get(pk=pk)
         assert isinstance(e.month, Month)
         assert e.month.month == 1
@@ -161,17 +159,17 @@ class test_model_field(TestCase):
         Example.objects.all().delete()
         for year in range(2001, 2011):
             for month in range(1, 13):
-                name = "%s - %02d" %(year, month)
+                name = "%s - %02d" % (year, month)
                 Example(name=name, month=Month(year, month)).save()
 
-        qs = Example.objects.filter(month='2005-12')
+        qs = Example.objects.filter(month="2005-12")
         assert qs.exists()
         assert qs.count() == 1
 
-        qs = Example.objects.filter(month__gte='2005-12')
+        qs = Example.objects.filter(month__gte="2005-12")
         assert qs.exists()
         self.assertEqual(qs.count(), 61)
 
-        qs = Example.objects.filter(month__gt='2005-12')
+        qs = Example.objects.filter(month__gt="2005-12")
         assert qs.exists()
         assert qs.count() == 60
