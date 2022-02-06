@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
 
-  lint:
+  ci:
     runs-on: ubuntu-latest
     env:
       PIPENV_NOSPIN: 'true'
@@ -43,9 +43,6 @@ jobs:
       - name: Flake8
         run: |
           pipenv run flake8 .
-      - name: Mypy
-        run: |
-          pipenv run mypy .
 
       - name: Build package 🐍
         run: pipenv run python -m build --sdist --wheel --outdir dist/

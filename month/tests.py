@@ -1,8 +1,9 @@
 import datetime
 
 from django.test import TestCase
-from month.models import Month
 from example.models import Example
+
+from month.models import Month
 
 
 def TestMonthFunctions(TestCase):

@@ -1,13 +1,10 @@
 import datetime
 
-from django.db import models
 from django.core import exceptions
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-
-from month import forms
-from month import widgets
-from month import Month
+from month import Month, forms, widgets
 from month.util import string_type
 
 
