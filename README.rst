@@ -1,6 +1,12 @@
 django-monthfield
 =================
 
+SQ Changes
+----------
+1. Update to have django 4 compatibility
+2. Removes python 2 compatibility
+3. Adds CI and precommit
+
 Introduction
 ------------
 
