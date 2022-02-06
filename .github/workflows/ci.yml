@@ -47,10 +47,11 @@ jobs:
       - name: Build package 🐍
         run: pipenv run python -m build --sdist --wheel --outdir dist/
 
+      # We always publish the main branch - for better or worse, since this will allow
+      # overwriting without updating the version. Be careful!
       - id: upload
         name: Publish distribution 📦 to fury.io
-        # Only publishes tags
-        if: startsWith(github.ref, 'refs/tags')
+        if: github.ref_name == 'main'
         run: |
           ls -l dist
           curl -F package=@$(ls dist/django-monthfield-*-py3-none-any.whl) https://${{ secrets.FURY_IO_UPLOAD_TOKEN }}@push.fury.io/spatialquotient/
