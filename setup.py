@@ -4,11 +4,11 @@ from setuptools import setup
 
 setup(
     name="django-monthfield",
-    version="1.0.2",
+    version="1.0.3",
     author="Matthys Kroon",
     author_email="matthysk@clearspark.co.za",
     packages=["month"],
-    install_requires=["django>3", "setuptools~=57.5.0"],
+    install_requires=["django>3"],
     include_package_data=True,
     url="https://github.com/clearspark/django-monthfield",
     license="BSD licence, see LICENCE",
