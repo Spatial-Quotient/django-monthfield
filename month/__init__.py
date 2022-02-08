@@ -115,3 +115,7 @@ class Month(object):
 
     def strftime(self, fmt):
         return self._date.strftime(fmt)
+
+    def date(self) -> datetime.date:
+        """Return a datetime object representing the first day of self's month."""
+        return self._date
