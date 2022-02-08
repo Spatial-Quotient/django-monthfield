@@ -8,7 +8,7 @@ setup(
     author="Matthys Kroon",
     author_email="matthysk@clearspark.co.za",
     packages=["month"],
-    install_requires=["django>3", "setuptools==60.8.1"],
+    install_requires=["django>3", "setuptools~=57.5.0"],
     include_package_data=True,
     url="https://github.com/clearspark/django-monthfield",
     license="BSD licence, see LICENCE",
